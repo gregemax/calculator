@@ -1,16 +1,39 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import "@mantine/core/styles.css";
+import "./index.css";
+import {  createTheme, MantineProvider } from "@mantine/core";
+import store from "./store/store";
+import { Provider } from "react-redux";
 
+
+const theme = createTheme({
+  components: {
+    Button: {
+      // Subscribe to theme and component params
+      styles: {
+        root:{
+        
+        }
+      },
+    },
+  },
+
+});
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById("root") as HTMLElement
 );
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <MantineProvider theme={theme}>
+    <React.StrictMode>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </React.StrictMode>
+  </MantineProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

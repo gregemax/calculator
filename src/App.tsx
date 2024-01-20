@@ -1,26 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Header from "./Header";
+import Lastpart from "./Lastpart";
+import Show from "./Show";
+import { useSelector } from "react-redux";
+//import { Actions } from "./store/config";
 
-function App() {
+const App = () => {
+  const state = useSelector((e: any) => e.canculator.counter);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div
+      className={`   w-full h-[100vh] ${
+        state === "first" ? "bg-body-primary text-white" : ""
+      } ${state === "second" ? "bg-body-secondry   text-black " : ""} 
+      ${
+        state === "last" ? "bg-body-last text-body-show" : ""
+      } justify-center flex`} 
+    >
+      <div>
+        <Header />
+        <Show />
+        <Lastpart />
+      </div>
     </div>
   );
-}
+};
 
 export default App;
